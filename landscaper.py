@@ -1,12 +1,15 @@
 # Character Attributes
 mower = {
     "money": 0,
-    "weapon": 0
+    "tool": 0
 }
+
+
 
 # Tools Available
 tools = [
-    {"name": "teeth", "price": 0,"profit": 1},
+    {"name": "teeth", "price": 0,"profit": 5},
+    {"name": "scissors", "price": 5,"profit": 5}
 ]
 
 # Functions
@@ -32,14 +35,18 @@ def actions():
 
 def mow():
     print("you mowed")
-    mower["money"] += 1
-    print(mower["money"])
+    # print(tools[1]["profit"])
+    mower["money"] += tools[0]["profit"]
+    print(f"You have ${mower["money"]}")
     win()
     
 def upgrade():
     print("you upgraded")
-    mower["tools"] += 1
-    print(tools[mower["tools"]])
+    if mower["money"] >= tools[0]["price"]:
+        mower["tool"] += 1
+        print(f"You have upgraded to {tools[mower["tool"]]["name"]}")
+    # elif mower["money"] <= tools[]
+        # print(tools[mower["tool"]]["name"])    
     win()
 
 def quit():
@@ -49,3 +56,4 @@ def win():
     actions()
 
 actions()
+
