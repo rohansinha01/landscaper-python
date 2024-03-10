@@ -19,6 +19,7 @@ tools = [
 # Functions
 
 def actions(): 
+
     result = input("do you want [m]ow, [u]pgrade, or [q]uit? ")
 
     if(result == "m"):
@@ -34,8 +35,9 @@ def actions():
         return 1
     
     print("no valid options given")
-
+    
     actions()
+   
 
 def mow():
     print("you mowed")
@@ -50,14 +52,9 @@ def upgrade():
         mower["money"] -= tools[mower["tool"]]["price"]
         print(f"You have upgraded to {tools[mower["tool"]]["name"]}")
         print(f"You have ${mower["money"]}")
-        
-    elif tools[mower["tool"]] == len(tools):
-        print("You have everything!")
     elif mower["money"] < tools[mower["tool"]]["price"]:
         print('You do not have the funds')   
     else: print("No more items to buy!")
-        
-        
     
     win()
 
@@ -65,11 +62,13 @@ def quit():
     print("game ends")
 
 def win():
-    actions()
-    if mower["money"] >= 1000 and tools[4]["name"] == "team of starving students":
-        print("you have a team and $1000")
-        mower["winner"] == True
+    if mower["money"] > 1000 and mower["tool"] == 4:
+        mower["winner"] = True
+        print("You win!")
+    else: actions()
+
 
 actions()
+
 
 
